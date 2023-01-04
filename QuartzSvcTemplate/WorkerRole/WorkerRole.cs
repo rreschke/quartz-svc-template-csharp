@@ -161,7 +161,7 @@ namespace WorkerRole
         {
             var properties = new NameValueCollection
             {
-                ["quartz.scheduler.instanceName"] = "svcCotacoesB3",
+                ["quartz.scheduler.instanceName"] = "Quartz",
                 ["quartz.threadPool.type"] = "Quartz.Simpl.SimpleThreadPool, Quartz",
                 ["quartz.threadPool.threadCount"] = "5",
                 ["quartz.threadPool.threadPriority"] = "1",

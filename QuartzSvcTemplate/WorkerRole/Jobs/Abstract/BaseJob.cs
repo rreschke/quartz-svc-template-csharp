@@ -48,7 +48,7 @@ namespace WorkerRole.Jobs.Abstract
             catch (Exception ex)
             {
                 //log4net.Appender.LogException(ex);
-                this.NotifyError($"[ERRO] svcCotacoesB3 - Job: {context.JobDetail.Key.Name} Ambiente: {ConfigurationManager.AppSettings["Environment"]}");
+                this.NotifyError($"[ERRO] Quartz - Job: {context.JobDetail.Key.Name} Ambiente: {ConfigurationManager.AppSettings["Environment"]}");
             }
 
             return Task.CompletedTask;

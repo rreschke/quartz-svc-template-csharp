@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<serviceModel xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="AzureCloudQuartzSvc" generation="1" functional="0" release="0" Id="0118faf2-26b9-4a50-b0a3-5a24e985a72a" dslVersion="1.2.0.0" xmlns="http://schemas.microsoft.com/dsltools/RDSM">
+<serviceModel xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="AzureCloudQuartzSvc" generation="1" functional="0" release="0" Id="684f7576-b74d-4d4a-83bd-b8de28dc9d41" dslVersion="1.2.0.0" xmlns="http://schemas.microsoft.com/dsltools/RDSM">
   <groups>
     <group name="AzureCloudQuartzSvcGroup" generation="1" functional="0" release="0">
       <componentports>
@@ -70,9 +70,9 @@
     </group>
   </groups>
   <implements>
-    <implementation Id="93e4096b-5b75-4fc4-9889-64509236cc0d" ref="Microsoft.RedDog.Contract\ServiceContract\AzureCloudQuartzSvcContract@ServiceDefinition">
+    <implementation Id="d11e544e-4777-4119-b3aa-07343984090b" ref="Microsoft.RedDog.Contract\ServiceContract\AzureCloudQuartzSvcContract@ServiceDefinition">
       <interfacereferences>
-        <interfaceReference Id="18a17d3c-45c7-4e6b-82c6-12ef2e702eb7" ref="Microsoft.RedDog.Contract\Interface\WorkerRole:Endpoint1@ServiceDefinition">
+        <interfaceReference Id="8020e345-03ce-45d7-988a-524ebd0eef4a" ref="Microsoft.RedDog.Contract\Interface\WorkerRole:Endpoint1@ServiceDefinition">
           <inPort>
             <inPortMoniker name="/AzureCloudQuartzSvc/AzureCloudQuartzSvcGroup/WorkerRole:Endpoint1" />
           </inPort>
