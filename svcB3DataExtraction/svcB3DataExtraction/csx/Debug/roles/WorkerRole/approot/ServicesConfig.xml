@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<Services>
+		<Service Enabled="true" Name="Example" Val1="aaa" Val2="bbb">
+			<Triggers>
+				<Cron>0 0 18 ? * MON-FRI</Cron>
+			</Triggers>
+		</Service>
+	</Services>
+</config>
