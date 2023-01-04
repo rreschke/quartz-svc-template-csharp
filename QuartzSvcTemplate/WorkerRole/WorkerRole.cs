@@ -18,6 +18,10 @@ using WorkerRole.Services.Config;
 using WorkerRole.Jobs.Example;
 using WorkerRole.Jobs.Interface;
 using WorkerRole.Jobs.Abstract;
+using System.Web.Http;
+using Owin;
+using CrystalQuartz.Owin;
+using Microsoft.Owin.Hosting;
 
 namespace WorkerRole
 {
@@ -31,6 +35,13 @@ namespace WorkerRole
         {
             try
             {
+                var startup = ConfigureAppBuilder();
+#if DEBUG
+                WebApp.Start("http://localhost:9000", startup);
+#else
+                WebApp.Start("http://+:9000", startup);
+#endif
+
                 return true;
             }
             catch (Exception ex)
@@ -59,6 +70,24 @@ namespace WorkerRole
                     return _quartzScheduler;
             }
 
+        }
+
+        private static Action<IAppBuilder> ConfigureAppBuilder()
+        {
+            void Startup(IAppBuilder app)
+            {
+                //app.Use(CLASSE_MIDDLEWARE);
+                app.UseCrystalQuartz(() => Instance); //Painel do CrystalQuartz estará em {URL_BASE}/quartz
+
+                var config = new HttpConfiguration();
+                config.MapHttpAttributeRoutes();
+                app.UseWebApi(config);
+
+                var listener = (HttpListener)app.Properties["System.Net.HttpListener"];
+                listener.AuthenticationSchemes = AuthenticationSchemes.Ntlm;
+            }
+
+            return Startup;
         }
 
         private static void Schedule<T>(string service) where T : IJob
@@ -118,7 +147,7 @@ namespace WorkerRole
         {
             //CONEXAO DB ETC ETC
 
-            var baseDirectory = Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\WorkerRole\approot";
+            var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
 
             if (!string.IsNullOrWhiteSpace(baseDirectory))
             {

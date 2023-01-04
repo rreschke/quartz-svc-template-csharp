@@ -39,14 +39,6 @@
     <ServiceConfiguration Include="ServiceConfiguration.Cloud.cscfg" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\QuartzUI\QuartzUI.csproj">
-      <Name>QuartzUI</Name>
-      <Project>{cc9654e3-cee1-4211-8e7e-b5d60e1bc6d7}</Project>
-      <Private>True</Private>
-      <RoleType>Web</RoleType>
-      <RoleName>QuartzUI</RoleName>
-      <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
-    </ProjectReference>
     <ProjectReference Include="..\WorkerRole\WorkerRole.csproj">
       <Name>WorkerRole</Name>
       <Project>{1c9bedcf-8145-48b2-a066-33508915876c}</Project>
@@ -61,7 +53,6 @@
     <Folder Include="WorkerRoleContent\" />
   </ItemGroup>
   <ItemGroup>
-    <DiagnosticsConfiguration Include="QuartzUIContent\diagnostics.wadcfgx" />
     <DiagnosticsConfiguration Include="WorkerRoleContent\diagnostics.wadcfgx" />
   </ItemGroup>
   <!-- Import the target files for this project template -->
