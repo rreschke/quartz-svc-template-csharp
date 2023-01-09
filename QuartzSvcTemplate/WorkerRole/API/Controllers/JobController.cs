@@ -7,6 +7,8 @@ using Quartz;
 using System.Web.Http;
 using System.Web.Http.Description;
 using System.Web.Http.Results;
+using System.Net.Http;
+using System.Net;
 
 namespace WorkerRole.API.Controllers
 {
@@ -16,7 +18,7 @@ namespace WorkerRole.API.Controllers
         [Route("")]
         [ResponseType(typeof(List<IJobDetail>))]
         [HttpGet]
-        public IHttpActionResult Get()
+        public HttpResponseMessage Get()
         {
             try
             {
@@ -24,14 +26,14 @@ namespace WorkerRole.API.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(ex);
             }
         }
 
         [Route("{jobGroup}/{jobName}/last-run-time")]
         [ResponseType(typeof(long))]
         [HttpGet]
-        public IHttpActionResult GetLastRunTime(string jobGroup, string jobName)
+        public HttpResponseMessage GetLastRunTime(string jobGroup, string jobName)
         {
             try
             {
@@ -39,14 +41,14 @@ namespace WorkerRole.API.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(ex);
             }
         }
 
         [Route("{jobGroup}/{jobName}/run-now")]
         [ResponseType(typeof(long))]
         [HttpGet]
-        public IHttpActionResult Get(string jobGroup, string jobName) 
+        public HttpResponseMessage Get(string jobGroup, string jobName) 
         {
             try
             {
@@ -54,14 +56,14 @@ namespace WorkerRole.API.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(ex);
             }
         }
 
         [Route("{jobGroup}/{jobName}/{dtRef:datetime}/run-now")]
         [ResponseType(typeof(long))]
         [HttpGet]
-        public IHttpActionResult Get(string jobGroup, string jobName, DateTime dtRef)
+        public HttpResponseMessage Get(string jobGroup, string jobName, DateTime dtRef)
         {
             try
             {
@@ -71,14 +73,18 @@ namespace WorkerRole.API.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(ex);
             }
         }
 
-        protected override BadRequestErrorMessageResult BadRequest(string message)
+        private HttpResponseMessage Ok<T>(T response)
         {
-            //LOG BLABLABLA
-            return new BadRequestErrorMessageResult(message, this);
+            return Request.CreateResponse(HttpStatusCode.OK, response, Configuration.Formatters.JsonFormatter);
+        }
+
+        private HttpResponseMessage BadRequest(Exception ex)
+        {
+            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
         }
     }
 }

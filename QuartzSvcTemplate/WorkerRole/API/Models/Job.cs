@@ -1,23 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
 using CrystalQuartz.Core.Utils;
 using Quartz;
 using Quartz.Impl.Matchers;
 
 namespace WorkerRole.API.Models
 {
-    [DataContract(Namespace = "", Name = "Job")]
     public class Job
     {
         private static IScheduler _scheduler = WorkerRole.Instance;
 
-        [DataMember]
         public string Group { get; set; }
 
-        [DataMember]
         public string Name { get; set; }
 
         public static IEnumerable<Job> GetJobs()
