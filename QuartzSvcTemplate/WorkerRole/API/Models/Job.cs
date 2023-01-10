@@ -9,7 +9,7 @@ namespace WorkerRole.API.Models
 {
     public class Job
     {
-        private static IScheduler _scheduler = WorkerRole.Instance;
+        private static IScheduler _scheduler = Utils.Scheduler.GetInstance();
 
         public string Group { get; set; }
 
